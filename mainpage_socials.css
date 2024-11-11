@@ -1,0 +1,98 @@
+body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: transparent;
+        }
+
+        .btncontainer {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .btnline {
+            display: flex;
+            gap: 20px;
+        }
+
+        .button {
+            text-decoration: none;
+            border: 1px solid #ccc;
+            color: white;
+            padding: 15px 50px;
+            border-radius: 5px;
+            font-size: 22px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .curseforge {
+            background: linear-gradient(135deg, #000000 0%, #000000 25%, #FF784D 50%, #000000 75%, #000000 100%);
+        }
+
+        .curseforge:hover {
+            background: linear-gradient(135deg, #000000 0%, #000000 25%, #91432b 50%, #000000 75%, #000000 100%);
+        }
+
+        .discord {
+            background: linear-gradient(135deg, #5865F2 0%, #3D53D3 100%);
+        }
+
+        .discord:hover {
+            background: linear-gradient(135deg, #3D53D3 0%, #5865F2 100%);
+        }
+
+        .email {
+            background: linear-gradient(135deg, #1b1d1e 0%, #34A853 22%, #F4B400 44%, #DB4437 66%, #4285F4 88%, #1b1d1e 100%);
+            color: #FFFFFF;
+        }
+
+        .email:hover {
+            background: linear-gradient(135deg, #1b1d1e 0%, #277c3d 22%, #a77a00 44%, #a13329 66%, #285397 88%, #1b1d1e 100%);
+        }
+
+        .github {
+            background-color: #000000;
+        }
+
+        .github:hover {
+            background-color: #1b1d1e;
+        }
+
+        .instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+
+        .instagram:hover {
+            background: radial-gradient(circle at 30% 107%, #b4ae6d 0%, #b4ae6d 5%, #b83f34 40%, #991971 55%, #1a3a9c 85%);
+        }
+
+        .tiktok {
+            background: linear-gradient(135deg, #000000 0%, #ff0050 25%, #00f2ea 75%, #000000 100%);
+        }
+
+        .tiktok:hover {
+            background: linear-gradient(135deg, #000000 0%, #b10038 25%, #005f5c 75%, #000000 100%);
+        }
+
+        .threads {
+            background: linear-gradient(120deg, #000000 0%, #333333 50%, #000000 100%);
+        }
+
+        .threads:hover {
+            background: linear-gradient(120deg, #000000 0%, #000000 100%);
+        }
+
+        .youtube {
+            background: linear-gradient(135deg, #FF0000 0%, #CC0000 50%, #FF0000 100%);
+        }
+
+        .youtube:hover {
+            background: linear-gradient(135deg, #CC0000 0%, #FF0000 50%, #CC0000 100%);
+        }
