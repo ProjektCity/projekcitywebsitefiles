@@ -1,0 +1,37 @@
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 75.96px;
+            width: 585px;
+            background-color: #1B1D1E;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #1B1D1E;
+            border: 1px solid #888888;
+            border-radius: 5px;
+            height: 73.96px;
+            position: relative;
+            width: 583px;
+        }
+
+        .progress {
+            background-color: #2D2D2D;
+            border-radius: 5px;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transition: width 0.5s;
+        }
+
+        .text {
+            color: #fff;
+            font-size: 30px;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
