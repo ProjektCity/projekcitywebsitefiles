@@ -1,82 +1,72 @@
-        let slideIndex = 0;
-        const slideDuration = 3000;
-        let slideTimer;
-
-        window.onload = function() {
-            showSlides();
-        };
-
-        function showSlides() {
-            const slides = document.getElementsByClassName("mySlides");
-            const textElements = document.getElementsByClassName("text");
-            const dots = document.getElementsByClassName("dot");
-            
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-                textElements[i].style.display = "none";
-                dots[i].className = dots[i].className.replace(" active", "");
-                const fill = dots[i].querySelector('.fill');
-                fill.style.transitionDuration = '0ms';
-                fill.style.width = "0";
-            }
-
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1 }
-            
-            slides[slideIndex - 1].style.display = "block";
-            textElements[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-            const fill = dots[slideIndex - 1].querySelector('.fill');
-            
-            fill.style.transitionDuration = `${slideDuration}ms`;
-            fill.style.width = "100%";
-
-            slideTimer = setTimeout(showSlides, slideDuration);
+        const carousel = document.querySelector('.carousel ul');
+        const indicatorsContainer = document.querySelector('.indicators');
+        let index = 0;
+        let autoSlideInterval;
+    
+        function createIndicators() {
+            const slides = document.querySelectorAll('.carousel li');
+            slides.forEach((_, i) => {
+                const button = document.createElement('button');
+                const progress = document.createElement('div');
+                progress.classList.add('progress');
+                button.dataset.index = i;
+                button.appendChild(progress);
+                button.onclick = () => showSlide(i, true);
+                indicatorsContainer.appendChild(button);
+            });
+            updateIndicators();
         }
-
-        function plusSlides(n) {
-            clearTimeout(slideTimer);
-            const slides = document.getElementsByClassName("mySlides");
-            const textElements = document.getElementsByClassName("text");
-            const dots = document.getElementsByClassName("dot");
-
-            slideIndex += n;
-            if (slideIndex > slides.length) { slideIndex = 1 }
-            if (slideIndex < 1) { slideIndex = slides.length }
-
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-                textElements[i].style.display = "none";
-                dots[i].className = dots[i].className.replace(" active", "");
-                const fill = dots[i].querySelector('.fill');
-                fill.style.transitionDuration = '0ms';
-                fill.style.width = "0";
-            }
-            slides[slideIndex - 1].style.display = "block";
-            textElements[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-            const fill = dots[slideIndex - 1].querySelector('.fill');
-            fill.style.transitionDuration = `${slideDuration}ms`;
-            fill.style.width = "100%";
-
-            slideTimer = setTimeout(showSlides, slideDuration);
+    
+        function updateIndicators() {
+            const buttons = indicatorsContainer.querySelectorAll('button');
+            buttons.forEach((button, i) => {
+                const progress = button.querySelector('.progress');
+                button.classList.remove('active');
+                progress.style.animation = 'none';
+                if (i === index) {
+                    button.classList.add('active');
+                    progress.style.animation = 'fill 3s linear';
+                }
+            });
         }
-
-        function currentSlide(n) {
-            clearTimeout(slideTimer);
-            slideIndex = n;
-
-            const dots = document.getElementsByClassName("dot");
-            for (let i = 0; i < dots.length; i++) {
-                const fill = dots[i].querySelector('.fill');
-                fill.style.transitionDuration = '0ms';
-                fill.style.width = "0";
-                dots[i].classList.remove("active");
+    
+        function showSlide(newIndex, stopAutoSlide = false) {
+            const slides = document.querySelectorAll('.carousel li');
+            const totalSlides = slides.length;
+    
+            if (newIndex < 0) newIndex = totalSlides - 1;
+            if (newIndex >= totalSlides) newIndex = 0;
+    
+            index = newIndex;
+            const offset = -index * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+            updateIndicators();
+    
+            if (stopAutoSlide) {
+                resetAutoSlide();
             }
-
-            plusSlides(0);
-
-            const activeFill = dots[slideIndex - 1].querySelector('.fill');
-            activeFill.style.transitionDuration = `${slideDuration}ms`;
-            activeFill.style.width = "100%";
         }
+    
+        function nextSlide() {
+            showSlide(index + 1);
+            resetAutoSlide();
+        }
+    
+        function prevSlide() {
+            showSlide(index - 1);
+            resetAutoSlide();
+        }
+    
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                nextSlide();
+            }, 3000);
+        }
+    
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+    
+        createIndicators();
+        startAutoSlide();
