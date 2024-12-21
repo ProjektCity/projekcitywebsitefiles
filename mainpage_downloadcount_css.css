@@ -17,7 +17,7 @@
             width: 583px;
         }
 
-        .progress {
+        #progressBar {
             background-color: #2D2D2D;
             border-radius: 5px;
             height: 100%;
@@ -25,13 +25,16 @@
             position: absolute;
             top: 0;
             transition: width 0.5s;
+            width: 0%;
         }
 
-        .text {
+        #progressText {
             color: #fff;
+            font-family: DejaVu Sans,Verdana,Geneva,sans-serif;
             font-size: 30px;
             left: 50%;
             position: absolute;
             top: 50%;
             transform: translate(-50%, -50%);
+            width: 400px;
         }
